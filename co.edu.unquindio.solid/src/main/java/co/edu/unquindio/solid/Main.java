@@ -1,19 +1,49 @@
 package co.edu.unquindio.solid;
 
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+
+import co.edu.unquindio.solid.model.Usuario;
+import co.edu.unquindio.solid.model.guardarUsuario;
+import co.edu.unquindio.solid.service.reporteExcel;
+import co.edu.unquindio.solid.service.reporteUsuario;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
-        // Press Alt+Intro with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        crearUsuario();
+        crearReporteUsuario();
+    }
 
-        // Press Mayús+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+    public static void crearUsuario() {
+        Usuario usuario = new Usuario();
+        usuario.setNombre("Juan Sebastian Arias");
+        usuario.setID("123456789");
+        usuario.setCelular("55555555");
+        usuario.setDireccion("calle 8 # 7-22");
+        usuario.setEmail("juan@jjjjjua.com");
 
-            // Press Mayús+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
-        }
+        System.out.println(usuario.getNombre());
+        guardarDB(usuario);
+    }
+    private static void guardarDB(Usuario usuario) {
+        guardarUsuario guardarUsuarioDB = new guardarUsuario();
+        guardarUsuarioDB.setNombre(usuario.getNombre());
+        guardarUsuarioDB.setID(usuario.getID());
+        guardarUsuarioDB.setCelular(usuario.getCelular());
+        guardarUsuarioDB.setDireccion(usuario.getDireccion());
+        guardarUsuarioDB.setEmail(usuario.getEmail());
+
+        List<guardarUsuario> usuarioDB = new ArrayList<>();
+        usuarioDB.add(guardarUsuarioDB);
+
+        System.out.println(usuarioDB);
+    }
+
+    public static void crearReporteUsuario(){
+        List<Usuario> ordenes = new ArrayList<>();// Llamamos la lista de usuarios de DB
+
+        reporteUsuario usuarios = new reporteUsuario(new reporteExcel());
+        usuarios.generarReporte(ordenes);
     }
 }
