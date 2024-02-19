@@ -3,6 +3,7 @@ package co.edu.unquindio.solid;
 
 import co.edu.unquindio.solid.model.Usuario;
 import co.edu.unquindio.solid.model.guardarUsuario;
+import co.edu.unquindio.solid.model.prendaCamisa;
 import co.edu.unquindio.solid.service.reporteExcel;
 import co.edu.unquindio.solid.service.reporteUsuario;
 
@@ -13,6 +14,7 @@ public class Main {
     public static void main(String[] args) {
         crearUsuario();
         crearReporteUsuario();
+        mostrarPrecio();
     }
 
     public static void crearUsuario() {
@@ -45,5 +47,12 @@ public class Main {
 
         reporteUsuario usuarios = new reporteUsuario(new reporteExcel());
         usuarios.generarReporte(ordenes);
+    }
+    public static void mostrarPrecio(){
+        prendaCamisa camiseta = new prendaCamisa();
+        camiseta.setPrecio(30);
+        camiseta.setTipo("Playera");
+
+        camiseta.mostrarPrecio(camiseta);
     }
 }
