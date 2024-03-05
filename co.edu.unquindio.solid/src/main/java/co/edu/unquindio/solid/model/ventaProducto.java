@@ -8,6 +8,6 @@ public class ventaProducto {
         this.producto = producto;
     }
     public void procesarPedido(){
-        
+
     }
 }
